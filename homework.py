@@ -36,11 +36,13 @@ def send_message(message, bot_client):
 
 
 def main():
+    print('Инициализируем бота')
     bot = telegram.Bot(token=TELEGRAM_TOKEN)  # проинициализировать бота здесь
     # current_timestamp = int(time.time())  # начальное значение timestamp
     current_timestamp = 0  # начальное значение timestamp
     while True:
         try:
+            print('Проверяем домашку')
             new_homework = get_homework_statuses(current_timestamp)
             if new_homework.get('homeworks'):
                 send_message(parse_homework_status(new_homework.get('homeworks')[0]), bot)
