@@ -6,14 +6,7 @@ import telegram
 from dotenv import load_dotenv
 
 load_dotenv()
-logger = logging.getLogger()
-fh = logging.FileHandler('errors.log')
-fh.setLevel(logging.DEBUG)
 
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-fh.setFormatter(formatter)
-
-logger.addHandler(fh)
 
 PRAKTIKUM_TOKEN = os.getenv("PRAKTIKUM_TOKEN")
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
