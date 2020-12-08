@@ -1,12 +1,11 @@
 import os
 import time
-import logging
+
 import requests
 import telegram
 from dotenv import load_dotenv
 
 load_dotenv()
-
 
 PRAKTIKUM_TOKEN = os.getenv("PRAKTIKUM_TOKEN")
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
@@ -38,14 +37,15 @@ def send_message(message, bot_client):
 
 def main():
     bot = telegram.Bot(token=TELEGRAM_TOKEN)  # проинициализировать бота здесь
-    current_timestamp = int(time.time())  # начальное значение timestamp
+    # current_timestamp = int(time.time())  # начальное значение timestamp
+    current_timestamp = 0  # начальное значение timestamp
     while True:
         try:
             new_homework = get_homework_statuses(current_timestamp)
             if new_homework.get('homeworks'):
-                send_message(parse_homework_status(new_homework.get('homeworks')[0]))
+                send_message(parse_homework_status(new_homework.get('homeworks')[0]), bot)
             current_timestamp = new_homework.get('current_date', current_timestamp)  # обновить timestamp
-            time.sleep(1200)
+            time.sleep(60)
 
         except Exception as e:
             print(f'Бот столкнулся с ошибкой: {e}')
