@@ -60,6 +60,7 @@ def main():
     current_timestamp = int(time.time())  # начальное значение timestamp
     while True:
         try:
+            print('Проверяем домашку')
             new_homework = get_homework_statuses(current_timestamp)
             if new_homework.get('homeworks'):
                 send_message(parse_homework_status(new_homework.get('homeworks')[0]), bot)
